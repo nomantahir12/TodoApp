@@ -1,0 +1,15 @@
+.navbar {
+    justify-content: space-between;
+}
+
+a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: white;
+}
+
+span {
+    font-size: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}

@@ -1,0 +1,10 @@
+.todo-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.todo-title h1 {
+    font-weight: 700;
+    font-size: 35px;
+}
