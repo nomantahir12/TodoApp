@@ -9,7 +9,7 @@ import { CrudService } from 'src/app/service/crud.service';
   styleUrls: ['./todos.component.css'],
 })
 export class TodosComponent implements OnInit {
-  todos: Todo[];
+  todos: Todo[] = [];
   todoObj : Todo = {
     sno: '',
     title: '',
@@ -39,7 +39,7 @@ export class TodosComponent implements OnInit {
       next: (res) => {
         this.todos = res.map((e: any) => {
           const data = e.payload.doc.data();
-          data.sno = e.payload.doc.sno;
+          // data.sno = e.payload.doc.sno;
           return data;
         })
       },
@@ -64,7 +64,7 @@ export class TodosComponent implements OnInit {
 
   deleteTodos(todo: Todo) {
     if (window.confirm('are you sure you want to delete')) {
-      console.log(todo.title);
+      // console.log(todo.title);
       this.data.deleteTodo(todo);
     }
   }
