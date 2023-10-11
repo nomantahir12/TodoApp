@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Todo } from '../Todo';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,14 +16,28 @@ export class CrudService {
     return this.afs.collection('/sno').add(todo);
   }
   getAllTodos() {
-    return this.afs.collection('/sno').snapshotChanges();
+    return this.afs.collection('sno').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data() as Todo;
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
   }
+  
  
   deleteTodo(todo: Todo) {
-    this.itemDoc = this.afs.collection('/sno').doc(todo.sno);
-    this.itemDoc.delete();
-    console.log(this.itemDoc.ref);
+    const snoDocRef = this.afs.collection('sno').doc(todo.id);
+  
+    snoDocRef.delete().then(() => {
+      console.log('Successfully deleted todo with ID:', todo.id);
+    }).catch(error => {
+      console.error('Error deleting todo:', error);
+    });
   }
+  
   
 
   toggleTodo(todo: Todo) {
