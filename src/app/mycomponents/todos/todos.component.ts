@@ -39,7 +39,6 @@ export class TodosComponent implements OnInit {
       next: (res) => {
         this.todos = res.map((e: any) => {
           const data = e.payload.doc.data();
-          // data.sno = e.payload.doc.sno;
           return data;
         })
       },
