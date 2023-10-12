@@ -9,6 +9,7 @@ export class CrudService {
 
   itemDoc: AngularFirestoreDocument<Todo>;
 
+
   constructor(private afs: AngularFirestore) {}
   addTodo(todo: Todo) {
     todo.sno = this.afs.createId();
