@@ -61,7 +61,7 @@ export class TodosComponent implements OnInit {
     this.resetForm();
   }
 
-  deleteTodos(todo: Todo) {
+  deleteTodos(todo : Todo) {
     if (window.confirm('are you sure you want to delete')) {
       // console.log(todo.title);
       this.data.deleteTodo(todo);
