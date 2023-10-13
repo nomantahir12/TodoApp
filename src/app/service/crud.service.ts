@@ -22,7 +22,7 @@ export class CrudService {
   deleteTodo(todo: Todo) {
     this.itemDoc = this.afs.collection('/sno').doc(todo.sno);
     this.itemDoc.delete();
-    console.log(this.itemDoc.ref);
+    // console.log(this.itemDoc.ref);
   }
   
 
