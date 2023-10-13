@@ -11,6 +11,7 @@ import { CrudService } from 'src/app/service/crud.service';
 export class TodosComponent implements OnInit {
   todos: Todo[] = [];
   todoObj : Todo = {
+    id: '',
     sno: '',
     title: '',
     desc: '',
@@ -39,8 +40,6 @@ export class TodosComponent implements OnInit {
       next: (res) => {
         this.todos = res.map((e: any) => {
           const data = e.payload.doc.data();
-          // const data = e
-          console.log(data);
           return data;
         })
       },
