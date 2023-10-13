@@ -12,14 +12,14 @@ export class TodosComponent implements OnInit {
   todos: Todo[] = [];
   todoObj : Todo = {
     id: '',
-    sno: '',
+    serialNo: '',
     title: '',
-    desc: '',
+    description: '',
     active: false
   };
-  sno: string;
+  serialNo: string;
   title: string;
-  desc: string;
+  description: string;
   active: boolean;
 
   constructor(private data: CrudService) {}
@@ -29,9 +29,9 @@ export class TodosComponent implements OnInit {
   }
 
   resetForm() {
-    this.sno = '';
+    this.serialNo = '';
     this.title = '';
-    this.desc = '';
+    this.description = '';
   }
 
   getAllTodos() {
@@ -39,8 +39,8 @@ export class TodosComponent implements OnInit {
     .subscribe({
       next: (res) => {
         this.todos = res.map((e: any) => {
-          const data = e.payload.doc.data();
-          return data;
+          // const data = e?.payload?.doc?.data();
+          return e;
         })
       },
       error: (err) => {
@@ -49,14 +49,15 @@ export class TodosComponent implements OnInit {
     })
   }
 
+
   addTodo() {
-    if(this.title == '' || this.desc == ''){
+    if(this.title == '' || this.description == ''){
       alert("Fill all input fields");
       return;
     }
-    this.todoObj.sno = this.sno;
+    this.todoObj.serialNo = this.serialNo;
     this.todoObj.title = this.title;
-    this.todoObj.desc = this.desc;
+    this.todoObj.description = this.description;
 
     this.data.addTodo(this.todoObj); 
     this.resetForm();

@@ -12,13 +12,13 @@ import { map } from 'rxjs';
 export class CrudService {
   itemDoc: AngularFirestoreDocument<Todo>;
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private angularFirestore: AngularFirestore) {}
   addTodo(todo: Todo) {
-    todo.sno = this.afs.createId();
-    return this.afs.collection('/sno').add(todo);
+    todo.serialNo = this.angularFirestore.createId();
+    return this.angularFirestore.collection('/sno').add(todo);
   }
   getAllTodos() {
-    return this.afs
+    return this.angularFirestore
       .collection('sno')
       .snapshotChanges()
       .pipe(
@@ -26,21 +26,25 @@ export class CrudService {
           return todos.map((todo) => {
             const data = todo.payload.doc.data() as Todo;
             const id = todo.payload.doc.id;
+            // console.log(data);
+            // console.log(id);
             return { ...data, id };
+            
           });
         }),
       );
   }
 
   deleteTodo(todo: Todo) {
-    this.itemDoc = this.afs.collection('/sno').doc(todo.sno);
+    this.itemDoc = this.angularFirestore.collection('/sno').doc(todo.id);
+    console.log(todo.id);
     this.itemDoc.delete();
     console.log(this.itemDoc.ref);
   }
 
   toggleTodo(todo: Todo) {
-    const sno = todo.sno;
-    const snoRef = this.afs.collection('todos').doc(sno);
+    const serialNo = todo.serialNo;
+    const snoRef = this.angularFirestore.collection('todos').doc(serialNo);
     return snoRef.update({ active: !todo.active });
   }
 }

@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="c">
     <div class="ic">
@@ -23,7 +22,7 @@
               class="form-control"
               name="desc"
               id="desc"
-              [(ngModel)]="desc"
+              [(ngModel)]="description"
             />
           </div>
           <button
@@ -40,10 +39,10 @@
 
   <div class="my-3" *ngFor="let todo of todos">
     <h5>{{ todo.title }}</h5>
-    <p>{{ todo.desc }}</p>
-    <p>{{ todo.sno }}</p>
+    <p>{{ todo.description }}</p>
+    <p>{{ todo.serialNo }}</p>
     <!-- <h5 [ngClass]="{ strike: !todo.active }">{{ todoObj.title }}</h5>
-    <p [ngClass]="{ strike: !todo.active }">{{ todoObj.desc }}</p> -->
+    <p [ngClass]="{ strike: !todo.active }">{{ todoObj.description }}</p> -->
     <div class="mb-3 form-check">
       <input
         type="checkbox"

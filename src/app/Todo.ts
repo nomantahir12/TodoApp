@@ -1,8 +1,8 @@
 export class Todo {
     id?: string
-    sno: string
+    serialNo: string
     title: string 
-    desc: string 
+    description: string 
     active: boolean 
   }
   
