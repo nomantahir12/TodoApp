@@ -17,11 +17,11 @@ export class CrudService {
   }
   getAllTodos() {
     return this.afs.collection('sno').snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data() as Todo;
-          const id = a.payload.doc.id;
-          return { id, ...data };
+      map(todos => {
+        return todos.map(todo => {
+          const data = todo.payload.doc.data() as Todo;
+          const id = todo.payload.doc.id;
+          return { ...data, id  };
         });
       })
     );
